@@ -65,5 +65,5 @@ publish {
 }
 
 afterEvaluate {
-    lint.dependsOn ktlintCheck
+//    lint.dependsOn ktlintCheck
 }
