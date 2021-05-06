@@ -3,6 +3,7 @@ package com.suddenh4x.ratingdialog
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.annotation.StringRes
+import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.google.android.play.core.review.ReviewManager
@@ -48,8 +49,8 @@ object AppRating {
 
         internal constructor(activity: AppCompatActivity, dialogOptions: DialogOptions) :
             this(activity) {
-            this.dialogOptions = dialogOptions
-        }
+                this.dialogOptions = dialogOptions
+            }
 
         fun setIconDrawable(iconDrawable: Drawable?) = apply {
             dialogOptions.iconDrawable = iconDrawable
@@ -60,6 +61,10 @@ object AppRating {
             dialogOptions.rateLaterButton.textId = rateLaterButtonTextId
         }
 
+        fun setRateLaterButtonText(rateLaterButtonText: String) = apply {
+            dialogOptions.rateLaterButton.text = rateLaterButtonText
+        }
+
         fun setRateLaterButtonClickListener(rateLaterButtonClickListener: RateDialogClickListener) =
             apply {
                 dialogOptions.rateLaterButton.rateDialogClickListener =
@@ -68,20 +73,22 @@ object AppRating {
 
         fun showRateNeverButton(
             @StringRes rateNeverButtonTextId: Int = R.string.rating_dialog_button_rate_never,
-            rateNeverButtonClickListener: RateDialogClickListener? = null
+            rateNeverButtonClickListener: RateDialogClickListener? = null,
+            rateNeverButtonText: CharSequence? = null
         ) = apply {
             dialogOptions.rateNeverButton =
-                RateButton(rateNeverButtonTextId, rateNeverButtonClickListener)
+                RateButton(rateNeverButtonTextId, rateNeverButtonClickListener, rateNeverButtonText)
             RatingLogger.debug("Show rate never button.")
         }
 
         fun showRateNeverButtonAfterNTimes(
             @StringRes rateNeverButtonTextId: Int = R.string.rating_dialog_button_rate_never,
             rateNeverButtonClickListener: RateDialogClickListener? = null,
-            countOfLaterButtonClicks: Int
+            countOfLaterButtonClicks: Int,
+            rateNeverButtonText: CharSequence? = null
         ) = apply {
             dialogOptions.rateNeverButton =
-                RateButton(rateNeverButtonTextId, rateNeverButtonClickListener)
+                RateButton(rateNeverButtonTextId, rateNeverButtonClickListener, rateNeverButtonText)
             dialogOptions.countOfLaterButtonClicksToShowNeverButton = countOfLaterButtonClicks
             RatingLogger.debug("Show rate never button after $countOfLaterButtonClicks later button clicks.")
         }
@@ -91,12 +98,24 @@ object AppRating {
             dialogOptions.titleTextId = titleTextId
         }
 
+        fun setTitleText(titleText: CharSequence) = apply {
+            dialogOptions.titleText = titleText
+        }
+
         fun setMessageTextId(@StringRes messageTextId: Int) = apply {
             dialogOptions.messageTextId = messageTextId
         }
 
+        fun setMessageText(messageText: CharSequence) = apply {
+            dialogOptions.messageText = messageText
+        }
+
         fun setConfirmButtonTextId(@StringRes confirmButtonTextId: Int) = apply {
             dialogOptions.confirmButton.textId = confirmButtonTextId
+        }
+
+        fun setConfirmButtonText(confirmButtonText: CharSequence) = apply {
+            dialogOptions.confirmButton.text = confirmButtonText
         }
 
         fun setConfirmButtonClickListener(confirmButtonClickListener: ConfirmButtonClickListener) =
@@ -113,12 +132,24 @@ object AppRating {
             dialogOptions.storeRatingTitleTextId = storeRatingTitleTextId
         }
 
+        fun setStoreRatingTitleText(storeRatingTitleText: CharSequence) = apply {
+            dialogOptions.storeRatingTitleText = storeRatingTitleText
+        }
+
         fun setStoreRatingMessageTextId(@StringRes storeRatingMessageTextId: Int) = apply {
             dialogOptions.storeRatingMessageTextId = storeRatingMessageTextId
         }
 
+        fun setStoreRatingMessageText(storeRatingMessageText: CharSequence) = apply {
+            dialogOptions.storeRatingMessageText = storeRatingMessageText
+        }
+
         fun setRateNowButtonTextId(@StringRes rateNowButtonTextId: Int) = apply {
             dialogOptions.rateNowButton.textId = rateNowButtonTextId
+        }
+
+        fun setRateNowButtonText(rateNowButtonText: CharSequence?) = apply {
+            dialogOptions.rateNowButton.text = rateNowButtonText
         }
 
         fun overwriteRateNowButtonClickListener(rateNowButtonClickListener: RateDialogClickListener) =
@@ -137,8 +168,16 @@ object AppRating {
             dialogOptions.feedbackTitleTextId = feedbackTitleTextId
         }
 
+        fun setFeedbackTitleText(feedbackTitleText: CharSequence) = apply {
+            dialogOptions.feedbackTitleText = feedbackTitleText
+        }
+
         fun setNoFeedbackButtonTextId(@StringRes noFeedbackButtonTextId: Int) = apply {
             dialogOptions.noFeedbackButton.textId = noFeedbackButtonTextId
+        }
+
+        fun setNoFeedbackButtonText(noFeedbackButtonText: CharSequence) = apply {
+            dialogOptions.noFeedbackButton.text = noFeedbackButtonText
         }
 
         fun setNoFeedbackButtonClickListener(noFeedbackButtonClickListener: RateDialogClickListener) =
@@ -152,12 +191,20 @@ object AppRating {
             dialogOptions.mailFeedbackMessageTextId = feedbackMailMessageTextId
         }
 
+        fun setMailFeedbackMessageText(feedbackMailMessageText: CharSequence) = apply {
+            dialogOptions.mailFeedbackMessageText = feedbackMailMessageText
+        }
+
         fun setMailSettingsForFeedbackDialog(mailSettings: MailSettings) = apply {
             dialogOptions.mailSettings = mailSettings
         }
 
         fun setMailFeedbackButtonTextId(@StringRes mailFeedbackButtonTextId: Int) = apply {
             dialogOptions.mailFeedbackButton.textId = mailFeedbackButtonTextId
+        }
+
+        fun setMailFeedbackButtonText(mailFeedbackButtonText: CharSequence) = apply {
+            dialogOptions.mailFeedbackButton.text = mailFeedbackButtonText
         }
 
         fun overwriteMailFeedbackButtonClickListener(mailFeedbackButtonClickListener: RateDialogClickListener) =
@@ -184,8 +231,16 @@ object AppRating {
             dialogOptions.customFeedbackMessageTextId = feedbackCustomMessageTextId
         }
 
+        fun setCustomFeedbackMessageText(feedbackCustomMessageText: CharSequence) = apply {
+            dialogOptions.customFeedbackMessageText = feedbackCustomMessageText
+        }
+
         fun setCustomFeedbackButtonTextId(@StringRes customFeedbackButtonTextId: Int) = apply {
             dialogOptions.customFeedbackButton.textId = customFeedbackButtonTextId
+        }
+
+        fun setCustomFeedbackButtonText(customFeedbackButtonText: CharSequence) = apply {
+            dialogOptions.customFeedbackButton.text = customFeedbackButtonText
         }
 
         fun setCustomFeedbackButtonClickListener(customFeedbackButtonClickListener: CustomFeedbackButtonClickListener) =
@@ -214,6 +269,10 @@ object AppRating {
                 activity,
                 launchTimesToShowAgain
             )
+        }
+
+        fun setCustomTheme(@StyleRes theme: Int) = apply {
+            dialogOptions.theme = theme
         }
 
         fun setMinimumDays(minimumDays: Int) = apply {

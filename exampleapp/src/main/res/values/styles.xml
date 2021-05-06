@@ -18,4 +18,14 @@
         <item name="android:layout_marginBottom">@dimen/margin_normal</item>
         <item name="android:layout_marginTop">@dimen/margin_normal</item>
     </style>
+
+    <style name="CustomTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#FFC107</item>
+        <item name="colorAccent">#E91E63</item>
+        <item name="backgroundColor">#E91E63</item>
+        <item name="android:forceDarkAllowed">false</item>
+<!--        <item name="android:background">#5fa3d0</item>-->
+
+    </style>
 </resources>

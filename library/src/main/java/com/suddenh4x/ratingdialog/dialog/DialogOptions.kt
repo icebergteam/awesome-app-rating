@@ -2,6 +2,7 @@ package com.suddenh4x.ratingdialog.dialog
 
 import android.graphics.drawable.Drawable
 import androidx.annotation.StringRes
+import androidx.annotation.StyleRes
 import com.suddenh4x.ratingdialog.R
 import com.suddenh4x.ratingdialog.buttons.ConfirmButton
 import com.suddenh4x.ratingdialog.buttons.CustomFeedbackButton
@@ -15,7 +16,7 @@ internal class DialogOptions : Serializable {
 
     @Transient
     var iconDrawable: Drawable? = null
-    var rateLaterButton: RateButton = RateButton(R.string.rating_dialog_button_rate_later, null)
+    var rateLaterButton: RateButton = RateButton(R.string.rating_dialog_button_rate_later, null, null)
     var rateNeverButton: RateButton? = null
     var ratingThreshold: RatingThreshold = RatingThreshold.THREE
     var customCondition: (() -> Boolean)? = null
@@ -26,30 +27,36 @@ internal class DialogOptions : Serializable {
     // rating dialog overview
     @StringRes
     var titleTextId = R.string.rating_dialog_overview_title
+    var titleText: CharSequence? = null
     @StringRes
     var messageTextId: Int? = null
-    var confirmButton = ConfirmButton(R.string.rating_dialog_overview_button_confirm, null)
+    var messageText: CharSequence? = null
+    var confirmButton = ConfirmButton(R.string.rating_dialog_overview_button_confirm, null, null)
     var showOnlyFullStars = false
 
     // rating dialog store
     @StringRes
     var storeRatingTitleTextId = R.string.rating_dialog_store_title
+    var storeRatingTitleText: CharSequence? = null
     @StringRes
     var storeRatingMessageTextId = R.string.rating_dialog_store_message
-    var rateNowButton: RateButton = RateButton(R.string.rating_dialog_store_button_rate_now, null)
+    var storeRatingMessageText: CharSequence? = null
+    var rateNowButton: RateButton = RateButton(R.string.rating_dialog_store_button_rate_now, null, null)
     var additionalRateNowButtonClickListener: RateDialogClickListener? = null
 
     // rating dialog feedback
     @StringRes
     var feedbackTitleTextId = R.string.rating_dialog_feedback_title
+    var feedbackTitleText: CharSequence? = null
     var noFeedbackButton: RateButton =
-        RateButton(R.string.rating_dialog_feedback_button_cancel, null)
+        RateButton(R.string.rating_dialog_feedback_button_cancel, null, null)
 
     // rating dialog mail feedback
     @StringRes
     var mailFeedbackMessageTextId = R.string.rating_dialog_feedback_mail_message
+    var mailFeedbackMessageText: CharSequence? = null
     var mailFeedbackButton: RateButton =
-        RateButton(R.string.rating_dialog_feedback_mail_button_send, null)
+        RateButton(R.string.rating_dialog_feedback_mail_button_send, null, null)
     var mailSettings: MailSettings? = null
     var additionalMailFeedbackButtonClickListener: RateDialogClickListener? = null
 
@@ -57,11 +64,15 @@ internal class DialogOptions : Serializable {
     var useCustomFeedback = false
     @StringRes
     var customFeedbackMessageTextId = R.string.rating_dialog_feedback_custom_message
+    var customFeedbackMessageText: CharSequence? = null
     var customFeedbackButton: CustomFeedbackButton =
-        CustomFeedbackButton(R.string.rating_dialog_feedback_custom_button_submit, null)
+        CustomFeedbackButton(R.string.rating_dialog_feedback_custom_button_submit, null, null)
 
     // other settings
     var cancelable = false
+
+    @StyleRes
+    var theme: Int = 0
 
     // Google in-app review
     var useGoogleInAppReview = false
